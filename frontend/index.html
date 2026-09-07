@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Inventory AI</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">◈</div>
+
+            <div>
+                <h2>Smart<span>AI</span></h2>
+                <p>Inventory Intelligence</p>
+            </div>
+        </div>
+
+        <nav>
+
+            <a href="#dashboard" class="nav-item active">
+    <span>▦</span>
+    Dashboard
+</a>
+
+<a href="#inventory" class="nav-item">
+    <span>◫</span>
+    Inventory
+</a>
+
+<a href="#forecast" class="nav-item">
+    <span>⌁</span>
+    Forecast
+</a>
+
+<a href="#recommendations" class="nav-item">
+    <span>◎</span>
+    AI Recommendations
+</a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="system-status">
+                <span class="status-dot"></span>
+
+                <div>
+                    <strong>System Online</strong>
+                    <small>AI Engine Active</small>
+                </div>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content" id="dashboard">
+
+        <!-- Top Header -->
+        <header class="topbar">
+
+            <div>
+                <p class="eyebrow">AI COMMAND CENTER</p>
+
+                <h1>Inventory Dashboard</h1>
+
+                <p class="subtitle">
+                    Monitor inventory, predict demand and prevent stockouts.
+                </p>
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="live-indicator">
+                    <span></span>
+                    LIVE
+                </div>
+
+                <button id="refreshButton" class="refresh-btn">
+    ↻ Refresh
+</button>
+
+            </div>
+
+        </header>
+
+
+        <!-- Summary Cards -->
+        <section class="summary-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon products">
+                    📦
+                </div>
+
+                <div>
+                    <p>Total Products</p>
+                    <h2 id="totalProducts">--</h2>
+                    <small>Tracked inventory items</small>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon high">
+                    ⚠
+                </div>
+
+                <div>
+                    <p>High Risk</p>
+                    <h2 id="highRisk">--</h2>
+                    <small>Immediate attention required</small>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon medium">
+                    ◉
+                </div>
+
+                <div>
+                    <p>Medium Risk</p>
+                    <h2 id="mediumRisk">--</h2>
+                    <small>Monitor inventory levels</small>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon demand">
+                    ↗
+                </div>
+
+                <div>
+                    <p>AI Demand</p>
+                    <h2 id="avgDemand">--</h2>
+                    <small>Predicted daily demand</small>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Main Analytics -->
+        <section class="analytics-grid">
+
+            <!-- Forecast Chart -->
+            <div class="panel chart-panel" id="forecast">
+
+                <div class="panel-header">
+
+                    <div>
+                        <p class="section-label">PREDICTIVE ANALYTICS</p>
+                        <h2>Demand Forecast</h2>
+                    </div>
+
+                    <select id="productSelect">
+                        <option value="Rice">Rice</option>
+                        <option value="Wheat Flour">Wheat Flour</option>
+                        <option value="Rice Flour">Rice Flour</option>
+                        <option value="Noodles">Noodles</option>
+                        <option value="Sugar">Sugar</option>
+                        <option value="Cooking Oil">Cooking Oil</option>
+                    </select>
+
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="demandChart"></canvas>
+                </div>
+
+            </div>
+
+
+            <!-- AI Insight -->
+            <div class="panel ai-panel" id="recommendations">
+
+                <div class="ai-header">
+
+                    <div class="ai-icon">
+                        ✦
+                    </div>
+
+                    <div>
+                        <p class="section-label">AI INTELLIGENCE</p>
+                        <h2>Smart Insights</h2>
+                    </div>
+
+                </div>
+
+
+                <div id="aiInsights" class="insights-container">
+
+                    <div class="loading">
+                        Analyzing inventory...
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Inventory Table -->
+        <section class="panel inventory-panel" id="inventory">
+
+            <div class="panel-header">
+
+                <div>
+                    <p class="section-label">INVENTORY INTELLIGENCE</p>
+                    <h2>Stock Overview</h2>
+                </div>
+
+                <div class="table-actions">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search product..."
+                        
+                    >
+                    <button id="addProductBtn" class="add-product-btn">
+    + Add Product
+</button>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>PRODUCT</th>
+                            <th>CURRENT STOCK</th>
+                            <th>AI DEMAND</th>
+                            <th>DAYS LEFT</th>
+                            <th>RISK</th>
+                            <th>REORDER</th>
+                            <th>ACTION</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="inventoryTable">
+
+                        <tr>
+                            <td colspan="7" class="loading">
+                                Loading inventory...
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer>
+
+            <p>
+                Smart Inventory AI · AI-powered inventory intelligence
+            </p>
+
+            <p>
+                Python · FastAPI · Scikit-learn
+            </p>
+
+        </footer>
+
+        <div id="productModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle">Add New Product</h2>
+            <button id="closeModal">&times;</button>
+        </div>
+
+        <form id="productForm">
+
+            <input
+                type="text"
+                id="productName"
+                placeholder="Product name"
+                required
+            >
+
+            <input
+                type="text"
+                id="category"
+                placeholder="Category"
+                required
+            >
+
+            <input
+                type="number"
+                id="currentStock"
+                placeholder="Current stock"
+                min="0"
+                required
+            >
+
+            <input
+                type="number"
+                id="dailyUsage"
+                placeholder="Daily usage"
+                min="0"
+                required
+            >
+
+            <input
+                type="text"
+                id="unit"
+                placeholder="Unit (kg, packs, liters)"
+                required
+            >
+
+            <button type="submit" id="submitProductBtn">
+    Add Product
+</button>
+
+        </form>
+    </div>
+</div>
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

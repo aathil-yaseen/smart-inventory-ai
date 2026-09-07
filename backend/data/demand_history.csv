@@ -1,0 +1,186 @@
+date,product_name,demand
+2026-08-01,Rice,75
+2026-08-02,Rice,82
+2026-08-03,Rice,78
+2026-08-04,Rice,85
+2026-08-05,Rice,80
+2026-08-06,Rice,88
+2026-08-07,Rice,84
+2026-08-08,Rice,79
+2026-08-09,Rice,86
+2026-08-10,Rice,81
+2026-08-11,Rice,90
+2026-08-12,Rice,87
+2026-08-13,Rice,83
+2026-08-14,Rice,89
+2026-08-15,Rice,85
+2026-08-16,Rice,92
+2026-08-17,Rice,88
+2026-08-18,Rice,91
+2026-08-19,Rice,86
+2026-08-20,Rice,94
+2026-08-21,Rice,90
+2026-08-22,Rice,87
+2026-08-23,Rice,93
+2026-08-24,Rice,89
+2026-08-25,Rice,95
+2026-08-26,Rice,91
+2026-08-27,Rice,96
+2026-08-28,Rice,92
+2026-08-29,Rice,98
+2026-08-30,Rice,94
+
+2026-08-01,Wheat Flour,55
+2026-08-02,Wheat Flour,62
+2026-08-03,Wheat Flour,58
+2026-08-04,Wheat Flour,64
+2026-08-05,Wheat Flour,60
+2026-08-06,Wheat Flour,66
+2026-08-07,Wheat Flour,63
+2026-08-08,Wheat Flour,59
+2026-08-09,Wheat Flour,65
+2026-08-10,Wheat Flour,61
+2026-08-11,Wheat Flour,68
+2026-08-12,Wheat Flour,64
+2026-08-13,Wheat Flour,62
+2026-08-14,Wheat Flour,67
+2026-08-15,Wheat Flour,65
+2026-08-16,Wheat Flour,70
+2026-08-17,Wheat Flour,66
+2026-08-18,Wheat Flour,69
+2026-08-19,Wheat Flour,64
+2026-08-20,Wheat Flour,72
+2026-08-21,Wheat Flour,68
+2026-08-22,Wheat Flour,65
+2026-08-23,Wheat Flour,71
+2026-08-24,Wheat Flour,67
+2026-08-25,Wheat Flour,73
+2026-08-26,Wheat Flour,70
+2026-08-27,Wheat Flour,75
+2026-08-28,Wheat Flour,71
+2026-08-29,Wheat Flour,76
+2026-08-30,Wheat Flour,72
+
+2026-08-01,Rice Flour,45
+2026-08-02,Rice Flour,48
+2026-08-03,Rice Flour,46
+2026-08-04,Rice Flour,50
+2026-08-05,Rice Flour,49
+2026-08-06,Rice Flour,52
+2026-08-07,Rice Flour,51
+2026-08-08,Rice Flour,47
+2026-08-09,Rice Flour,53
+2026-08-10,Rice Flour,50
+2026-08-11,Rice Flour,55
+2026-08-12,Rice Flour,54
+2026-08-13,Rice Flour,52
+2026-08-14,Rice Flour,56
+2026-08-15,Rice Flour,55
+2026-08-16,Rice Flour,58
+2026-08-17,Rice Flour,57
+2026-08-18,Rice Flour,60
+2026-08-19,Rice Flour,56
+2026-08-20,Rice Flour,62
+2026-08-21,Rice Flour,59
+2026-08-22,Rice Flour,61
+2026-08-23,Rice Flour,63
+2026-08-24,Rice Flour,60
+2026-08-25,Rice Flour,65
+2026-08-26,Rice Flour,63
+2026-08-27,Rice Flour,67
+2026-08-28,Rice Flour,65
+2026-08-29,Rice Flour,68
+2026-08-30,Rice Flour,66
+
+2026-08-01,Noodles,90
+2026-08-02,Noodles,95
+2026-08-03,Noodles,92
+2026-08-04,Noodles,98
+2026-08-05,Noodles,100
+2026-08-06,Noodles,96
+2026-08-07,Noodles,102
+2026-08-08,Noodles,99
+2026-08-09,Noodles,104
+2026-08-10,Noodles,101
+2026-08-11,Noodles,106
+2026-08-12,Noodles,103
+2026-08-13,Noodles,108
+2026-08-14,Noodles,105
+2026-08-15,Noodles,110
+2026-08-16,Noodles,107
+2026-08-17,Noodles,112
+2026-08-18,Noodles,109
+2026-08-19,Noodles,114
+2026-08-20,Noodles,111
+2026-08-21,Noodles,116
+2026-08-22,Noodles,113
+2026-08-23,Noodles,118
+2026-08-24,Noodles,115
+2026-08-25,Noodles,120
+2026-08-26,Noodles,117
+2026-08-27,Noodles,122
+2026-08-28,Noodles,119
+2026-08-29,Noodles,124
+2026-08-30,Noodles,121
+
+2026-08-01,Sugar,18
+2026-08-02,Sugar,20
+2026-08-03,Sugar,19
+2026-08-04,Sugar,21
+2026-08-05,Sugar,22
+2026-08-06,Sugar,20
+2026-08-07,Sugar,23
+2026-08-08,Sugar,21
+2026-08-09,Sugar,24
+2026-08-10,Sugar,22
+2026-08-11,Sugar,25
+2026-08-12,Sugar,24
+2026-08-13,Sugar,26
+2026-08-14,Sugar,25
+2026-08-15,Sugar,27
+2026-08-16,Sugar,26
+2026-08-17,Sugar,28
+2026-08-18,Sugar,27
+2026-08-19,Sugar,29
+2026-08-20,Sugar,28
+2026-08-21,Sugar,30
+2026-08-22,Sugar,29
+2026-08-23,Sugar,31
+2026-08-24,Sugar,30
+2026-08-25,Sugar,32
+2026-08-26,Sugar,31
+2026-08-27,Sugar,33
+2026-08-28,Sugar,32
+2026-08-29,Sugar,34
+2026-08-30,Sugar,33
+
+2026-08-01,Cooking Oil,22
+2026-08-02,Cooking Oil,24
+2026-08-03,Cooking Oil,23
+2026-08-04,Cooking Oil,25
+2026-08-05,Cooking Oil,26
+2026-08-06,Cooking Oil,24
+2026-08-07,Cooking Oil,27
+2026-08-08,Cooking Oil,26
+2026-08-09,Cooking Oil,28
+2026-08-10,Cooking Oil,27
+2026-08-11,Cooking Oil,29
+2026-08-12,Cooking Oil,28
+2026-08-13,Cooking Oil,30
+2026-08-14,Cooking Oil,29
+2026-08-15,Cooking Oil,31
+2026-08-16,Cooking Oil,30
+2026-08-17,Cooking Oil,32
+2026-08-18,Cooking Oil,31
+2026-08-19,Cooking Oil,33
+2026-08-20,Cooking Oil,32
+2026-08-21,Cooking Oil,34
+2026-08-22,Cooking Oil,33
+2026-08-23,Cooking Oil,35
+2026-08-24,Cooking Oil,34
+2026-08-25,Cooking Oil,36
+2026-08-26,Cooking Oil,35
+2026-08-27,Cooking Oil,37
+2026-08-28,Cooking Oil,36
+2026-08-29,Cooking Oil,38
+2026-08-30,Cooking Oil,37
