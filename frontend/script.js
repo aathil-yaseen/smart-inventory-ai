@@ -209,9 +209,9 @@ function generateAIInsights() {
             <div>
                 <strong>AI Decision Support</strong>
                 <p>
-                    AI-based demand forecasting and stockout risk
-                    analysis are helping prioritize inventory actions.
-                </p>
+            Demand forecasting and stockout risk analysis help
+            prioritize inventory actions and reorder decisions.
+        </p>
             </div>
         </div>
     `;
