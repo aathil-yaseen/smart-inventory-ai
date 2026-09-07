@@ -89,3 +89,182 @@ The system analyzes inventory and historical demand data, forecasts future deman
                    │ Actionable Insights │
                    │ on Dashboard        │
                    └─────────────────────┘
+```
+
+---
+
+## 📸 Dashboard Screenshots
+
+### Dashboard
+
+![Smart Inventory AI Dashboard](ScreenShots/Dashboard.jpeg)
+
+### Add Product
+
+![Add Product](ScreenShots/Add_product.jpeg)
+
+### Edit Product
+
+![Edit Product](ScreenShots/Edit_product.jpeg)
+
+---
+
+## 🛠️ Technology Stack
+
+| Category | Technology |
+|---|---|
+| Programming Language | Python |
+| Backend Framework | FastAPI |
+| Machine Learning | Scikit-learn |
+| Data Processing | Pandas, NumPy |
+| Database | SQLite |
+| Frontend | HTML, CSS, JavaScript |
+| Data Visualization | Chart.js |
+| API | RESTful API |
+| Version Control | Git, GitHub |
+| Development Environment | Visual Studio Code |
+
+---
+
+## 🔌 API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/` | Check API status |
+| POST | `/inventory` | Add a new product |
+| GET | `/inventory` | Retrieve all inventory products |
+| DELETE | `/inventory/{product_id}` | Delete a product |
+| GET | `/inventory/{product_id}/stock-status` | Check stock status |
+| GET | `/inventory/stock-analysis` | Analyze inventory health |
+| GET | `/inventory/{product_name}/forecast` | Generate demand forecast |
+| GET | `/inventory/{product_id}/smart-recommendation` | Generate AI reorder recommendation |
+| GET | `/inventory/smart-recommendations` | Generate recommendations for all products |
+
+---
+
+## 🤖 Machine Learning Approach
+
+The system uses historical product demand data to estimate future demand for each inventory item.
+
+### Model
+
+- Algorithm: Linear Regression
+- Library: Scikit-learn
+- Input: Historical daily demand
+- Feature: Sequential day index
+- Output: Predicted daily demand
+
+### Forecasting Process
+
+1. Load historical demand data from CSV.
+2. Filter data for the selected product.
+3. Convert dates into sequential day values.
+4. Train a Linear Regression model.
+5. Estimate future daily demand.
+6. Use the forecast to calculate stockout risk.
+7. Generate a recommended reorder quantity.
+
+### Inventory Decision Logic
+
+The system combines the ML forecast with current inventory levels to estimate:
+
+- Days until stockout
+- Stockout risk level
+- Forecast demand
+- Safety stock requirement
+- Recommended reorder quantity
+
+This creates a simple **data → prediction → decision** workflow for inventory management.
+
+---
+
+## ▶️ How to Run
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/aathil-yaseen/smart-inventory-ai.git
+cd smart-inventory-ai
+```
+
+### 2. Create a Virtual Environment
+
+```bash
+python -m venv venv
+```
+
+### 3. Activate the Virtual Environment
+
+**Windows:**
+
+```bash
+venv\Scripts\activate
+```
+
+### 4. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 5. Start the FastAPI Backend
+
+```bash
+uvicorn backend.main:app --reload
+```
+
+The API will be available at:
+
+```text
+http://127.0.0.1:8000
+```
+
+### 6. Start the Frontend
+
+Open another terminal and run:
+
+```bash
+python -m http.server 5501 --directory frontend
+```
+
+Open the dashboard at:
+
+```text
+http://127.0.0.1:5501
+```
+
+### 7. API Documentation
+
+FastAPI provides interactive API documentation at:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+---
+
+## 📁 Project Structure
+
+```text
+smart-inventory-ai/
+│
+├── backend/
+│   ├── data/
+│   │   └── demand_history.csv
+│   │
+│   ├── database.py
+│   ├── main.py
+│   ├── model.py
+│   └── test_model.py
+│
+├── frontend/
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+│
+├── .gitignore
+├── README.md
+└── requirements.txt
+```
+
+---
