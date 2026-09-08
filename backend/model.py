@@ -14,9 +14,24 @@ def train_model(product_name):
         data["product_name"] == product_name
     ].copy()
 
-    product_data["date"] = pd.to_datetime(product_data["date"])
+    if product_data.empty:
+        raise ValueError(
+            f"No demand history found for product: {product_name}"
+        )
 
-    product_data["day"] = range(1, len(product_data) + 1)
+    if len(product_data) < 2:
+        raise ValueError(
+            f"Not enough demand history for product: {product_name}"
+        )
+
+    product_data["date"] = pd.to_datetime(
+        product_data["date"]
+    )
+
+    product_data["day"] = range(
+        1,
+        len(product_data) + 1
+    )
 
     X = product_data[["day"]]
     y = product_data["demand"]
@@ -27,19 +42,44 @@ def train_model(product_name):
     return model, len(product_data)
 
 
-def predict_demand(product_name, future_days=7):
-    model, historical_days = train_model(product_name)
+def predict_demand(
+    product_name,
+    future_days=7,
+    fallback_demand=None
+):
+    try:
+        model, historical_days = train_model(product_name)
 
-    future_day = historical_days + future_days
+        future_day = historical_days + future_days
 
-    prediction = model.predict(
-    pd.DataFrame({"day": [future_day]})
-)
+        prediction = model.predict(
+            pd.DataFrame({
+                "day": [future_day]
+            })
+        )
 
-    predicted_demand = round(float(prediction[0]), 2)
+        predicted_demand = round(
+            float(prediction[0]),
+            2
+        )
 
-    return {
-    "product_name": product_name,
-    "forecast_days": future_days,
-    "predicted_daily_demand": predicted_demand
-}
+        return {
+            "product_name": product_name,
+            "forecast_days": future_days,
+            "predicted_daily_demand": predicted_demand
+        }
+
+    except ValueError:
+        if fallback_demand is None:
+            raise
+
+        fallback_demand = round(
+            float(fallback_demand),
+            2
+        )
+
+        return {
+            "product_name": product_name,
+            "forecast_days": future_days,
+            "predicted_daily_demand": fallback_demand
+        }

@@ -459,7 +459,7 @@ tbody tr:hover {
     background: rgba(124, 92, 255, 0.045);
 }
 
-.risk {
+.risk-badge {
     display: inline-block;
     padding: 5px 9px;
     border-radius: 20px;
@@ -467,17 +467,17 @@ tbody tr:hover {
     font-weight: 700;
 }
 
-.risk.high {
+.risk-badge.high {
     background: rgba(255, 92, 112, 0.13);
     color: var(--red);
 }
 
-.risk.medium {
+.risk-badge.medium {
     background: rgba(242, 201, 76, 0.13);
     color: var(--yellow);
 }
 
-.risk.low {
+.risk-badge.low {
     background: rgba(53, 208, 127, 0.12);
     color: var(--green);
 }

@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from backend.database import create_table, get_connection
 from backend.model import predict_demand
@@ -29,7 +29,6 @@ def home():
         "message": "Smart Inventory AI API is running!"
     }
 
-from fastapi import HTTPException
 @app.post("/inventory")
 def add_product(
     product_name: str,
@@ -243,8 +242,28 @@ def stock_analysis():
 @app.get("/inventory/{product_name}/forecast")
 def demand_forecast(product_name: str, days: int = 7):
 
+    connection = get_connection()
+
+    product = connection.execute(
+        "SELECT * FROM inventory WHERE product_name = ?",
+        (product_name,)
+    ).fetchone()
+
+    connection.close()
+
+    if product is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Product not found"
+        )
+
     try:
-        result = predict_demand(product_name, days)
+        result = predict_demand(
+            product_name,
+            days,
+            fallback_demand=product["daily_usage"]
+        )
+
         return result
 
     except Exception as e:
@@ -274,9 +293,10 @@ def smart_recommendation(product_id: int, forecast_days: int = 7):
     current_stock = product["current_stock"]
 
     forecast = predict_demand(
-        product["product_name"],
-        forecast_days
-    )
+    product["product_name"],
+    forecast_days,
+    fallback_demand=product["daily_usage"]
+)
 
     predicted_daily_demand = forecast["predicted_daily_demand"]
 
@@ -345,7 +365,8 @@ def all_smart_recommendations():
         try:
             forecast = predict_demand(
                 product["product_name"],
-                7
+                7,
+                fallback_demand=product["daily_usage"]
             )
 
             predicted_daily_demand = forecast["predicted_daily_demand"]
@@ -382,8 +403,10 @@ def all_smart_recommendations():
 
                 if days_until_stockout <= 3:
                     risk = "HIGH"
+
                 elif days_until_stockout <= 7:
                     risk = "MEDIUM"
+
                 else:
                     risk = "LOW"
 
@@ -392,6 +415,7 @@ def all_smart_recommendations():
                 "product_name": product["product_name"],
                 "category": product["category"],
                 "current_stock": current_stock,
+                "daily_usage": product["daily_usage"],
                 "unit": product["unit"],
                 "predicted_daily_demand": predicted_daily_demand,
                 "days_until_stockout": days_until_stockout,
@@ -403,7 +427,14 @@ def all_smart_recommendations():
             recommendations.append({
                 "product_id": product["id"],
                 "product_name": product["product_name"],
-                "stockout_risk": "NO FORECAST DATA"
+                "category": product["category"],
+                "current_stock": product["current_stock"],
+                "daily_usage": product["daily_usage"],
+                "unit": product["unit"],
+                "predicted_daily_demand": None,
+                "days_until_stockout": None,
+                "stockout_risk": "NO FORECAST DATA",
+                "recommended_reorder": 0
             })
 
     return recommendations

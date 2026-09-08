@@ -171,7 +171,11 @@ function generateAIInsights() {
             (b.days_until_stockout ?? 999999)
     );
 
-    const criticalProduct = sortedProducts[0];
+    const productsWithStockoutData = sortedProducts.filter(
+    item => item.days_until_stockout !== null
+);
+
+const criticalProduct = productsWithStockoutData[0];
 
     const totalReorder = inventoryData.reduce(
         (total, item) =>
@@ -243,6 +247,10 @@ async function loadForecast(productName) {
         const forecastResponse = await fetch(
             `${API_URL}/inventory/${encodeURIComponent(productName)}/forecast?days=7`
         );
+
+        if (!forecastResponse.ok) {
+         throw new Error("Failed to load forecast");
+}
 
         const forecast = await forecastResponse.json();
 
@@ -354,15 +362,16 @@ function updateProductSelector() {
     `;
 
     if (
-        inventoryData.some(
-            item => item.product_name === currentValue
-        )
-    ) {
-        selector.value = currentValue;
-    } else if (inventoryData.length > 0) {
-        selector.value = inventoryData[0].product_name;
-        loadForecast(inventoryData[0].product_name);
-    }
+    inventoryData.some(
+        item => item.product_name === currentValue
+    )
+) {
+    selector.value = currentValue;
+    loadForecast(currentValue);
+} else if (inventoryData.length > 0) {
+    selector.value = inventoryData[0].product_name;
+    loadForecast(inventoryData[0].product_name);
+}
 }
 
 // ===============================
@@ -510,10 +519,10 @@ productForm.addEventListener("submit", async (event) => {
 
     const productName =
         document.getElementById("productName").value;
+ 
 
-    const category =
-        document.getElementById("category").value =
-    "";
+ const category =
+    document.getElementById("category").value;
 
     const currentStock =
         document.getElementById("currentStock").value;
@@ -640,7 +649,7 @@ async function editProduct(productId) {
         product.product_name;
 
     document.getElementById("category").value =
-        "";
+    product.category;
 
     document.getElementById("currentStock").value =
         product.current_stock;
