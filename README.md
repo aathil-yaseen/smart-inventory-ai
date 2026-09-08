@@ -1,4 +1,4 @@
-# Smart Inventory AI
+# IntelliStock AI — Full-Stack Inventory Intelligence & Decision Platform
 
 > AI-powered inventory intelligence platform for demand forecasting, stockout risk prediction, and smart reorder recommendations.
 
