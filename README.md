@@ -16,7 +16,7 @@ The system analyzes inventory and historical demand data, forecasts future deman
 - Edit existing products
 - Delete products
 - View inventory records
-- Search and filter products
+- Search products
 - Track stock quantity, category, unit, and daily usage
 
 ### 🤖 AI & Machine Learning
@@ -27,7 +27,8 @@ The system analyzes inventory and historical demand data, forecasts future deman
 - Stockout risk prediction
 - Estimated days until stockout
 - ML-based reorder recommendations using demand forecasts and inventory rules
-
+- Fallback demand estimation for new products without historical data
+  
 ### 📊 Business Intelligence
 
 - Inventory health monitoring
@@ -133,6 +134,7 @@ The system analyzes inventory and historical demand data, forecasts future deman
 | GET | `/` | Check API status |
 | POST | `/inventory` | Add a new product |
 | GET | `/inventory` | Retrieve all inventory products |
+| PUT | `/inventory/{product_id}` | Update an existing product |
 | DELETE | `/inventory/{product_id}` | Delete a product |
 | GET | `/inventory/{product_id}/stock-status` | Check stock status |
 | GET | `/inventory/stock-analysis` | Analyze inventory health |
@@ -164,6 +166,12 @@ The system uses historical product demand data to estimate future demand for eac
 6. Use the forecast to calculate stockout risk.
 7. Generate a recommended reorder quantity.
 
+### New Product Handling
+
+New products may not have sufficient historical demand data.
+
+In this case, the system uses the product's current daily usage as a baseline demand estimate instead of generating an ML forecast from insufficient historical data.
+
 ### Inventory Decision Logic
 
 The system combines the ML forecast with current inventory levels to estimate:
@@ -174,7 +182,7 @@ The system combines the ML forecast with current inventory levels to estimate:
 - Safety stock requirement
 - Recommended reorder quantity
 
-This creates a simple **data → prediction → decision** workflow for inventory management.
+This creates a simple **Data → Prediction → Risk Analysis → Decision** workflow for inventory management.
 
 ---
 
@@ -183,7 +191,19 @@ This creates a simple **data → prediction → decision** workflow for inventor
 - The current forecasting model uses a simple Linear Regression approach.
 - Forecast accuracy depends on the quality and amount of historical demand data.
 - Reorder recommendations are based on forecasted demand, current stock, and predefined safety-stock rules.
- 
+- New products without sufficient historical data use current daily usage as a baseline estimate.
+- The current system uses CSV-based historical demand data rather than automatically collecting real-time sales transactions.
+
+ ## 🔮 Future Improvements
+
+- Integrate real-time sales and transaction data
+- Automatically calculate daily usage from sales history
+- Add advanced demand forecasting models
+- Add automated anomaly detection
+- Migrate from SQLite to PostgreSQL for production environments
+- Deploy the application to a cloud platform
+- Add automated model evaluation and retraining
+- Add inventory alerts and notifications
 
 ## ▶️ How to Run
 
