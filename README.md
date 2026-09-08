@@ -246,12 +246,12 @@ http://127.0.0.1:8000/docs
 ## 📁 Project Structure
 
 ```text
+
 smart-inventory-ai/
 │
 ├── backend/
 │   ├── data/
 │   │   └── demand_history.csv
-│   │
 │   ├── database.py
 │   ├── main.py
 │   ├── model.py
@@ -262,9 +262,12 @@ smart-inventory-ai/
 │   ├── style.css
 │   └── script.js
 │
+├── ScreenShots/
+│   ├── Dashboard.jpeg
+│   ├── Add_product.jpeg
+│   └── Edit_product.jpeg
+│
 ├── .gitignore
 ├── README.md
 └── requirements.txt
-```
-
 ---
