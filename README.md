@@ -26,7 +26,7 @@ The system analyzes inventory and historical demand data, forecasts future deman
 - Future demand estimation using Scikit-learn
 - Stockout risk prediction
 - Estimated days until stockout
-- AI-assisted reorder recommendations
+- ML-based reorder recommendations using demand forecasts and inventory rules
 
 ### 📊 Business Intelligence
 
@@ -152,7 +152,7 @@ The system uses historical product demand data to estimate future demand for eac
 - Library: Scikit-learn
 - Input: Historical daily demand
 - Feature: Sequential day index
-- Output: Predicted daily demand
+- Output: Estimated future daily demand
 
 ### Forecasting Process
 
@@ -177,6 +177,13 @@ The system combines the ML forecast with current inventory levels to estimate:
 This creates a simple **data → prediction → decision** workflow for inventory management.
 
 ---
+
+### Limitations
+
+- The current forecasting model uses a simple Linear Regression approach.
+- Forecast accuracy depends on the quality and amount of historical demand data.
+- Reorder recommendations are based on forecasted demand, current stock, and predefined safety-stock rules.
+ 
 
 ## ▶️ How to Run
 
